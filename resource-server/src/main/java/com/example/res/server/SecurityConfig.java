@@ -18,15 +18,16 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
     @Order(Ordered.HIGHEST_PRECEDENCE)
 	public void configure(HttpSecurity http) throws Exception {
 		http
-		.sessionManagement()
-		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and()
-		.csrf().disable()
-	  	.authorizeRequests()
-        .anyRequest().authenticated()
-	  	.and()
-	  	.httpBasic()
-	  		.realmName("CRM_REALM");
+			.sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and()
+			.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/hello").hasRole("ADMIN")
+				.anyRequest().authenticated()
+			.and()
+			.httpBasic()
+				.realmName("CRM_REALM");
     }
 
 

@@ -11,6 +11,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.TokenApprovalStore;
@@ -23,16 +27,20 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Autowired
 	private ClientDetailsService clientDetailsService;
- 
+
 	@Autowired
-    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-        .withUser("admin").password("{noop}adminpass").roles("ADMIN","USER").and()
-        .withUser("Archna").password("{noop}archna").roles("ADMIN","USER").and()
-        .withUser("user").password("{noop}pass123").roles("USER");
-    }
+	UserDetailsService userDetailsService;
+ 
+//	@Autowired
+//    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//        .withUser("admin").password("adminpass").roles("ADMIN","USER").and()
+//        .withUser("Archna").password("archna").roles("ADMIN","USER").and()
+//        .withUser("user").password("pass123").roles("USER");
+//    }
 	
  
     @Override
@@ -44,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.csrf().disable()
 	  	.authorizeRequests()
-	  	.antMatchers("/oauth/token").permitAll()
+				.antMatchers("/oauth/token").permitAll()
 	  	.antMatchers("/check_token").permitAll()
         .anyRequest().authenticated()
 	  	.and()
@@ -82,6 +90,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return store;
 	}
 
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService);
+	}
+
+	@Bean
+	public PasswordEncoder getPasswordEncoder() {
+		return NoOpPasswordEncoder.getInstance();
+	}
 
 
 }

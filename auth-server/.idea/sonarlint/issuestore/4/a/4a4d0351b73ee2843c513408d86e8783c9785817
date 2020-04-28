@@ -1,0 +1,14 @@
+
+]	java:S125&"<This block of commented-out lines of code should be removed.(Ö°¹áùÿÿÿÿ8ŸĞ¹¯›.
+[
+java:S5344_">Don't use the default "PasswordEncoder" relying on plain-text.(Ö˜ÔÚ8…¹¯›.
+X
+java:S1874d";Remove this use of "NoOpPasswordEncoder"; it is deprecated.(å‰ö8Äı²¯›.
+[	java:S112W"FDefine and throw a dedicated exception instead of using a generic one.(¡¦À¢
+
+java:S1128"]Remove this unused import 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder'.(åÅÚ…ûÿÿÿÿ8¢¾¯›.
+u
+java:S3305 "ZInject this field value directly into "userApprovalHandler", the only method that uses it.(è™äÓıÿÿÿÿ
+]	java:S125*"<This block of commented-out lines of code should be removed.(œ÷ü½ùÿÿÿÿ8ŸĞ¹¯›.
+‚
+java:S1130W"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(¡¦À¢

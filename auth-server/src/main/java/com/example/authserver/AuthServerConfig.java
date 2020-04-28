@@ -34,7 +34,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 	    clients.inMemory()
 	    .withClient("exampleClient")
-            .secret("{noop}exampleSecret")
+            .secret("exampleSecret")
             .authorizedGrantTypes("password", "refresh_token","client_credentials")
             .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
             .scopes("read", "write", "trust")

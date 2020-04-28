@@ -1,0 +1,9 @@
+
+p
+java:S1128"[Remove this unused import 'org.springframework.security.oauth2.client.OAuth2ClientContext'.(Ýóá+
+…
+java:S1128	"oRemove this unused import 'org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails'.(£çÆà
+^
+java:S1128"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚î‰Þ
+u
+java:S1128"ZRemove this unused import 'org.springframework.security.oauth2.client.OAuth2RestTemplate'.(Îî§½ýÿÿÿÿ
